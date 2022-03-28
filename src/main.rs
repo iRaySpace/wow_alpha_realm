@@ -23,6 +23,7 @@ fn handle_world(mut stream: TcpStream) {
         .unwrap();
 
     // credentials are read
+    // TODO: experiment for change in username and password in .ses
     let mut buf = [0u8; 64];
     stream.read(&mut buf).unwrap();
     // println!("{:?}", String::from_utf8_lossy(&buf));
@@ -59,6 +60,11 @@ fn handle_world(mut stream: TcpStream) {
             0x00, 0x00, 0x00, 0x00, 0x00,
         ])
         .unwrap();
+
+    // to keep the connection open read for incoming stream
+    // TODO: loop for stream reads
+    buf.iter_mut().for_each(|x| *x = 0);
+    stream.read(&mut buf).unwrap();
 }
 
 fn main() {
