@@ -39,7 +39,7 @@ fn handle_world(mut stream: TcpStream) {
     stream.read(&mut buf).unwrap();
 
     // probably a protocol to initiate sending back any character info
-    stream.write(&[0x00, 0xa3]).unwrap();
+    stream.write(&[0x00, 0xa3]).unwrap(); // could be the size of the next packets until character
     stream.write(&[0x3b, 0x00]).unwrap();
     stream.write(&[0x00, 0x00]).unwrap();
 
